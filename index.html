@@ -1,48 +1,43 @@
-<script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
-<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-<script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
-<script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width">
+    <title>A-Frame GIF Shader - Basic</title>
+    <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
+    <script src="../build.js"></script>
+    <link rel="stylesheet" type="text/css" href="../common.css"/>
+  </head>
+  <body>
+    <a-scene>
 
-<style>
-  .arjs-loader {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+      <!-- assets -->
+      <a-assets>
+        <img id="nyancat" src="nyancat.gif">
+        <img id="pusheen" src="pusheen.gif">
+        <img id="banana" src="banana.gif">
+      </a-assets>
 
-  .arjs-loader div {
-    text-align: center;
-    font-size: 1.25em;
-    color: white;
-  }
-</style>
+      <a-entity position="0 0 -5">
 
-<body style="margin : 0px; overflow: hidden;">
-  <!-- minimal loader shown until image descriptors are loaded -->
-  <div class="arjs-loader">
-    <div>Loading, please wait...</div>
-  </div>
-  <a-scene
-    vr-mode-ui="enabled: false;"
-    renderer="logarithmicDepthBuffer: true;"
-    embedded
-    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
-  >
-    <a-nft
-      type="nft"
-      url="https://rawcdn.githack.com/Gardenou/acudam_cortines/810085d07257a3c63148866e43b42b04fa2188c8/logo/logo"
-      smooth='true' smoothCount='10' smoothTolerance='0.2' smoothThreshold='5'
-    >
-      <a-entity geometry="primitive: box;" material="shader:gif;src:url(https://rawcdn.githack.com/Gardenou/acudam_cortines/2e2a140f61deec912b0a09de53986fad79620e19/adria.gif);transparent:true;alphaTest:0.7"
-        ></a-entity>
-    </a-nft>
-    <a-entity camera></a-entity>
-  </a-scene>
-</body>
+        <!-- pusheen -->
+        <a-entity geometry="primitive:box;width:1.5;height:1.5;depth:1.5;" position="-1.2 4.625 -1" material="shader:gif;src:url(pusheen.gif);" animation="property: rotation; dur: 10000;to: 0 360 0; loop: true; easing: linear;"></a-entity>
+        <a-entity geometry="primitive:plane;width:2;height:2;" position="-1.2 2.375 -1" material="shader:gif;src:url(pusheen.gif);color:orange;"></a-entity>
+        <a-entity geometry="primitive:circle;segments:64" position="-1.2 0.125 -1" material="shader:gif;src:#pusheen;opacity:.2;color:blue"></a-entity>
+        <!-- banana -->
+        <a-entity geometry="primitive:plane;width:2;height:2;" position="-1.2 -2.125 -1" material="shader:gif;src:#banana;repeat: 2 2;alphaTest:0.5;"></a-entity>
+        <a-entity geometry="primitive:plane;width:2;height:2;" position="1.2 -2.125 -1" material="shader:gif;src:#banana;alphaTest:0.5;"></a-entity>
+        <!-- nyancat -->
+        <a-entity geometry="primitive:circle;segments:5;radius:1.2;" position="1.2 4.625 -1" material="shader:gif;src:url(nyancat.gif);opacity:.5;"></a-entity>
+        <a-entity rotation="0 0 0" position="1.2 2.25 -1">
+          <a-entity geometry="primitive:cylinder; height:1.5;radius:1;" material="shader:gif;src:#nyancat;" animation="property:rotation; dur:5000;to:0 360 0; loop:true; easing:linear;"></a-entity>
+        </a-entity>
+        <a-entity geometry="primitive:box;width:1.5;height:1.5;depth:1.5;" position="1.2 0.125 -1" material="shader:gif;src:url(nyancat.gif);color:green"></a-entity>
+        </a-entity>
+      <!-- sky -->
+      <a-sky color="pink"></a-sky>
+    </a-scene>
+    <div id="buttons" class="buttons"></div>
+    <div class="spacer"></div>
+    <div class="spacer2"></div>
+  </body>
+</html>
