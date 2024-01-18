@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js">
   <!-- we import arjs version without NFT but with marker + location based support -->
   <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
   <body style="margin : 0px; overflow: hidden;">
@@ -16,7 +17,7 @@
         <a-entity
           position="0 0 0"
           scale="0.05 0.05 0.05"
-          gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf"
+          material="shader:gif;src:url(https://rawcdn.githack.com/Gardenou/acudam_cortines/2e2a140f61deec912b0a09de53986fad79620e19/adria.gif);transparent:true;alphaTest:0.7"
         ></a-entity>
       </a-marker>
       <a-entity camera></a-entity>
